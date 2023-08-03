@@ -1,9 +1,12 @@
+import logging
 from src.dataprep import model_prep
 from src.model import model_build
-
 import numpy as np
 from keras.preprocessing.sequence import pad_sequences
 
+# Set up logging
+logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 def gen_poem(seed_text, next_words=5):
     try:
@@ -22,7 +25,7 @@ def gen_poem(seed_text, next_words=5):
             seed_text += " " + output_word
         print(seed_text)
     except Exception as e:
-        print(f"An error occurred: {e}")
+        logger.error(f"An error occurred: {e}")
 
 if __name__ == '__main__':
     gen_poem('Joe is walking down by the side of a road')
