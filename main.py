@@ -28,4 +28,7 @@ def gen_poem(seed_text, next_words=5):
         logger.error(f"An error occurred: {e}")
 
 if __name__ == '__main__':
-    gen_poem('Joe is walking down by the side of a road')
+    try:
+        gen_poem('Joe is walking down by the side of a road')
+    except Exception as e:
+        logger.error(f"An error occurred in main: {e}")
